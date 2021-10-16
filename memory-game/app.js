@@ -50,4 +50,15 @@ const cardArray = [
     name: '1039',
     img: 'images/1039.jpg'
   }
-]
+];
+
+const grid = document.querySelector('.grid');
+
+// Create board:
+for (let i = 0; i < cardArray.length; i ++) {
+  let card = document.createElement('img');
+  card.setAttribute('src', 'images/back.png');
+  card.setAttribute('data-id', i);
+  // card.addEventListener('click', flipCard);
+  grid.appendChild(card);
+}
