@@ -53,12 +53,28 @@ const cardArray = [
 ];
 
 const grid = document.querySelector('.grid');
+const cardsChosen = [];
+const cardsChosenId = [];
 
 // Create board:
 for (let i = 0; i < cardArray.length; i ++) {
   let card = document.createElement('img');
   card.setAttribute('src', 'images/back.png');
   card.setAttribute('data-id', i);
-  // card.addEventListener('click', flipCard);
+  card.addEventListener('click', flipCard);
   grid.appendChild(card);
+}
+
+// Check for matches:
+
+// Flip selected card:
+function flipCard() {
+  let cardId = this.getAttribute('data-id');
+  cardsChosen.push(cardArray[cardId].name);
+  cardsChosenId.push(cardId);
+  this.setAttribute('src', cardArray[cardId].img);
+  if (cardsChosen.length === 2) {
+    // delays the reaction so that player has time to see cards first
+    setTimeout(checkForMatch, 500)
+  }
 }
