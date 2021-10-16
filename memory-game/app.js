@@ -52,7 +52,10 @@ const cardArray = [
   }
 ];
 
+cardArray.sort(() => 0.5 - Math.random());
+
 const grid = document.querySelector('.grid');
+const resultDisplay = document.getElementById('result');
 let cardsChosen = [];
 let cardsChosenId = [];
 const matchesFound = [];
@@ -83,6 +86,10 @@ function checkForMatch() {
   }
   cardsChosen = [];
   cardsChosenId = [];
+  resultDisplay.textContent = matchesFound.length;
+  if (matchesFound.length === cardArray.length/2) {
+    resultDisplay.textContent = 'Congratulations! You matched them all!'
+  }
 }
 
 // Flip selected card:
