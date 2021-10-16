@@ -53,8 +53,9 @@ const cardArray = [
 ];
 
 const grid = document.querySelector('.grid');
-const cardsChosen = [];
-const cardsChosenId = [];
+let cardsChosen = [];
+let cardsChosenId = [];
+const matchesFound = [];
 
 // Create board:
 for (let i = 0; i < cardArray.length; i ++) {
@@ -66,6 +67,23 @@ for (let i = 0; i < cardArray.length; i ++) {
 }
 
 // Check for matches:
+function checkForMatch() {
+  const cards = document.querySelectorAll('img');
+  const optionOneId = cardsChosenId[0];
+  const optionTwoId = cardsChosenId[1];
+  if (cardsChosen[0] === cardsChosen[1]) {
+    alert('You found a match!');
+    cards[optionOneId].setAttribute('src', 'images/white.png');
+    cards[optionTwoId].setAttribute('src', 'images/white.png');
+    matchesFound.push(cardsChosen);
+  } else {
+    alert('Sorry, try again!')
+    cards[optionOneId].setAttribute('src', 'images/back.png');
+    cards[optionTwoId].setAttribute('src', 'images/back.png');
+  }
+  cardsChosen = [];
+  cardsChosenId = [];
+}
 
 // Flip selected card:
 function flipCard() {
